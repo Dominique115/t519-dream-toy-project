@@ -1,0 +1,642 @@
+vs<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Making a Dream Toy Rocket</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Decorative dotted trajectory line that runs behind the whole story -->
+<svg class="trail" width="4" height="100%" viewBox="0 0 4 2000" preserveAspectRatio="none" aria-hidden="true">
+  <line x1="2" y1="0" x2="2" y2="2000" stroke="#d98c3a" stroke-width="2" stroke-dasharray="2 10" stroke-linecap="round"/>
+</svg>
+
+<!-- ================= HERO ================= -->
+<section class="section hero reveal">
+  <div class="hero-content">
+    <svg class="doodle doodle-rocket-big" viewBox="0 0 200 320" aria-hidden="true">
+      <path d="M100 10 C 130 50, 140 140, 128 220 L 118 240 L 82 240 L 72 220 C 60 140, 70 50, 100 10 Z" fill="#fff" stroke="#2b2b2b" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M100 12 C 108 60, 110 120, 104 170" stroke="#2b2b2b" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <circle cx="100" cy="95" r="18" fill="#bfe3ff" stroke="#2b2b2b" stroke-width="3"/>
+      <path d="M78 190 L 40 245 L 78 232 Z" fill="#ffd166" stroke="#2b2b2b" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M122 190 L 160 245 L 122 232 Z" fill="#ffd166" stroke="#2b2b2b" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M86 238 C 90 268, 95 290, 100 305 C 105 290, 110 268, 114 238 Z" fill="#ff6b5e" stroke="#2b2b2b" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M90 236 C 93 258, 97 276, 100 290" stroke="#ffb703" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.8"/>
+    </svg>
+    <h1>Making a Dream Toy<br>Rocket</h1>
+    <p class="subtitle">a making story, told in trial &amp; error</p>
+    <div class="scroll-cue" aria-hidden="true">
+      <span>scroll</span>
+      <svg width="20" height="30" viewBox="0 0 20 30"><path d="M10 2 L10 26 M3 19 L10 26 L17 19" stroke="#2b2b2b" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+  </div>
+  <svg class="doodle doodle-star star-a" viewBox="0 0 40 40" aria-hidden="true"><use href="#kid-star"/></svg>
+  <svg class="doodle doodle-star star-b" viewBox="0 0 40 40" aria-hidden="true"><use href="#kid-star"/></svg>
+  <svg class="doodle doodle-star star-c" viewBox="0 0 40 40" aria-hidden="true"><use href="#kid-star"/></svg>
+</section>
+
+<!-- Reusable SVG defs (kid-drawn star, planet, etc.) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="kid-star">
+      <path d="M20 3 L24 15 L37 15 L26 23 L30 36 L20 28 L10 36 L14 23 L3 15 L16 15 Z"
+            fill="#ffd166" stroke="#2b2b2b" stroke-width="2.2" stroke-linejoin="round"/>
+    </g>
+    <g id="kid-planet">
+      <circle cx="30" cy="30" r="16" fill="#ff8c61" stroke="#2b2b2b" stroke-width="3"/>
+      <ellipse cx="30" cy="30" rx="27" ry="7" fill="none" stroke="#2b2b2b" stroke-width="2.5" transform="rotate(-10 30 30)"/>
+    </g>
+
+    <!-- dino, for the dream toy section -->
+    <g id="kid-dino">
+      <path d="M8 44 C 6 30, 14 10, 28 8 C 34 7, 36 12, 32 14 C 40 14, 44 20, 40 24 C 46 26, 46 34, 40 36 L 38 44 L 32 44 L 32 38 C 26 40, 18 40, 14 44 Z"
+            fill="#9bd48a" stroke="#2b2b2b" stroke-width="2.2" stroke-linejoin="round"/>
+      <circle cx="30" cy="15" r="1.6" fill="#2b2b2b"/>
+    </g>
+
+    <!-- speech bubble, for The Idea -->
+    <g id="kid-bubble">
+      <path d="M4 6 H40 V26 H18 L10 34 L12 26 H4 Z" fill="#fff" stroke="#2b2b2b" stroke-width="2.2" stroke-linejoin="round"/>
+      <line x1="10" y1="13" x2="34" y2="13" stroke="#2b2b2b" stroke-width="1.6" stroke-linecap="round"/>
+      <line x1="10" y1="19" x2="28" y2="19" stroke="#2b2b2b" stroke-width="1.6" stroke-linecap="round"/>
+    </g>
+
+    <!-- constellation dots+lines, for The Stars -->
+    <g id="kid-constellation">
+      <circle cx="6" cy="30" r="2.6" fill="#ffd166" stroke="#2b2b2b" stroke-width="1.6"/>
+      <circle cx="22" cy="14" r="2.6" fill="#ffd166" stroke="#2b2b2b" stroke-width="1.6"/>
+      <circle cx="38" cy="26" r="2.6" fill="#ffd166" stroke="#2b2b2b" stroke-width="1.6"/>
+      <circle cx="30" cy="40" r="2.6" fill="#ffd166" stroke="#2b2b2b" stroke-width="1.6"/>
+      <path d="M6 30 L22 14 L38 26 L30 40 L6 30" fill="none" stroke="#2b2b2b" stroke-width="1.4" stroke-dasharray="1 5" stroke-linecap="round"/>
+    </g>
+
+    <!-- paint drip, for glow painting -->
+    <g id="kid-paintdrip">
+      <path d="M20 4 C 26 14, 30 22, 30 30 C 30 38, 24 42, 18 40 C 12 38, 10 30, 14 22 C 16 16, 18 10, 20 4 Z"
+            fill="#9ad3ff" stroke="#2b2b2b" stroke-width="2.2" stroke-linejoin="round"/>
+      <circle cx="19" cy="20" r="2" fill="#fff" opacity="0.7"/>
+    </g>
+
+    <!-- battery, for LED circuit -->
+    <g id="kid-battery">
+      <rect x="6" y="12" width="28" height="20" rx="3" fill="#fff" stroke="#2b2b2b" stroke-width="2.2"/>
+      <rect x="34" y="18" width="5" height="8" rx="1.5" fill="#2b2b2b"/>
+      <rect x="11" y="17" width="6" height="10" fill="#ff6b5e" stroke="#2b2b2b" stroke-width="1.6"/>
+      <line x1="22" y1="17" x2="22" y2="27" stroke="#2b2b2b" stroke-width="2.2" stroke-linecap="round"/>
+      <line x1="17" y1="22" x2="27" y2="22" stroke="#2b2b2b" stroke-width="2.2" stroke-linecap="round"/>
+    </g>
+
+    <!-- zigzag wire, for LED circuit -->
+    <g id="kid-wire">
+      <path d="M2 10 L12 10 L18 30 L24 10 L30 30 L36 10 L44 10"
+            fill="none" stroke="#2b2b2b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="2" cy="10" r="2.4" fill="#ff6b5e" stroke="#2b2b2b" stroke-width="1.4"/>
+      <circle cx="44" cy="10" r="2.4" fill="#ff6b5e" stroke="#2b2b2b" stroke-width="1.4"/>
+    </g>
+
+    <!-- LED bulb, for LED insertion -->
+    <g id="kid-led">
+      <path d="M18 2 C 26 2, 32 9, 32 17 C 32 24, 27 28, 24 30 L24 36 L14 36 L14 30 C 11 28, 6 24, 6 17 C 6 9, 10 2, 18 2 Z"
+            fill="#fff3bf" stroke="#2b2b2b" stroke-width="2.2" stroke-linejoin="round"/>
+      <line x1="15" y1="36" x2="14" y2="46" stroke="#2b2b2b" stroke-width="2" stroke-linecap="round"/>
+      <line x1="21" y1="36" x2="22" y2="46" stroke="#2b2b2b" stroke-width="2" stroke-linecap="round"/>
+      <path d="M24 10 L28 6 M22 6 L26 2" stroke="#2b2b2b" stroke-width="1.6" stroke-linecap="round"/>
+    </g>
+
+    <!-- tiny rocket outline, for 3D printing / LED insertion -->
+    <g id="kid-rocket-outline">
+      <path d="M20 2 C 26 10, 28 28, 25 44 L22 48 L18 48 L15 44 C 12 28, 14 10, 20 2 Z"
+            fill="none" stroke="#2b2b2b" stroke-width="2" stroke-dasharray="3 4" stroke-linejoin="round"/>
+      <circle cx="20" cy="18" r="3.4" fill="none" stroke="#2b2b2b" stroke-width="1.6"/>
+    </g>
+
+    <!-- horseshoe magnet, for magnet mystery -->
+    <g id="kid-magnet">
+      <path d="M8 6 L8 24 Q8 34 20 34 Q32 34 32 24 L32 6"
+            fill="none" stroke="#2b2b2b" stroke-width="4" stroke-linecap="round"/>
+      <rect x="4" y="2" width="8" height="8" fill="#ff6b5e" stroke="#2b2b2b" stroke-width="2"/>
+      <rect x="28" y="2" width="8" height="8" fill="#bfe3ff" stroke="#2b2b2b" stroke-width="2"/>
+    </g>
+
+    <!-- needle + thread, for sewing / planets -->
+    <g id="kid-needle">
+      <line x1="6" y1="38" x2="34" y2="6" stroke="#2b2b2b" stroke-width="2.2" stroke-linecap="round"/>
+      <ellipse cx="32" cy="8" rx="3" ry="4" fill="none" stroke="#2b2b2b" stroke-width="1.8" transform="rotate(45 32 8)"/>
+      <path d="M6 38 C 0 34, 4 26, 10 30 C 14 33, 10 40, 4 40" fill="none" stroke="#d98c3a" stroke-width="1.8" stroke-linecap="round"/>
+    </g>
+
+    <!-- playing card, for making the game cards -->
+    <g id="kid-card">
+      <rect x="6" y="2" width="28" height="38" rx="4" fill="#fff" stroke="#2b2b2b" stroke-width="2.4" transform="rotate(-6 20 20)"/>
+      <path d="M13 18 L17 10 L21 18 L25 24 L17 22 Z" fill="#ffd166" stroke="#2b2b2b" stroke-width="1.4" stroke-linejoin="round" transform="rotate(-6 20 20)"/>
+    </g>
+
+    <!-- wiring trace, for base board wiring -->
+    <g id="kid-tracewire">
+      <path d="M4 6 H20 V18 H34" fill="none" stroke="#2b2b2b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M4 34 H16 V22 H34" fill="none" stroke="#2b2b2b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="4" cy="6" r="2.6" fill="#ff6b5e" stroke="#2b2b2b" stroke-width="1.2"/>
+      <circle cx="4" cy="34" r="2.6" fill="#bfe3ff" stroke="#2b2b2b" stroke-width="1.2"/>
+    </g>
+
+    <!-- score flag / winner pennant, for score board -->
+    <g id="kid-pennant">
+      <line x1="8" y1="4" x2="8" y2="40" stroke="#2b2b2b" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M8 6 L34 12 L8 20 Z" fill="#ff8c61" stroke="#2b2b2b" stroke-width="2.2" stroke-linejoin="round"/>
+    </g>
+
+    <!-- storage box, for finished game -->
+    <g id="kid-box">
+      <path d="M4 16 L20 6 L36 16 L36 34 L20 42 L4 34 Z" fill="#fff" stroke="#2b2b2b" stroke-width="2.4" stroke-linejoin="round"/>
+      <path d="M4 16 L20 24 L36 16 M20 24 L20 42" fill="none" stroke="#2b2b2b" stroke-width="2" stroke-linejoin="round"/>
+    </g>
+  </defs>
+</svg>
+
+<!-- Scroll-synced background decorations -->
+<div class="bg-decor" aria-hidden="true">
+  <svg class="bg-doodle big" data-theme="dream" style="top:10%; left:4%;" viewBox="0 0 48 48"><use href="#kid-dino"/></svg>
+  <svg class="bg-doodle" data-theme="dream" style="top:38%; right:5%;" viewBox="0 0 40 40"><use href="#kid-star"/></svg>
+  <svg class="bg-doodle" data-theme="dream" style="top:60%; left:7%;" viewBox="0 0 48 48"><use href="#kid-dino"/></svg>
+  <svg class="bg-doodle" data-theme="dream" style="top:82%; right:8%;" viewBox="0 0 40 50"><use href="#kid-rocket-outline"/></svg>
+
+  <svg class="bg-doodle big" data-theme="idea" style="top:10%; right:5%;" viewBox="0 0 44 40"><use href="#kid-bubble"/></svg>
+  <svg class="bg-doodle" data-theme="idea" style="top:40%; left:4%;" viewBox="0 0 44 40"><use href="#kid-bubble"/></svg>
+  <svg class="bg-doodle" data-theme="idea" style="top:68%; right:7%;" viewBox="0 0 44 40"><use href="#kid-bubble"/></svg>
+  <svg class="bg-doodle" data-theme="idea" style="top:88%; left:8%;" viewBox="0 0 40 40"><use href="#kid-star"/></svg>
+
+  <svg class="bg-doodle big" data-theme="stars" style="top:8%; left:4%;" viewBox="0 0 44 44"><use href="#kid-constellation"/></svg>
+  <svg class="bg-doodle" data-theme="stars" style="top:28%; right:5%;" viewBox="0 0 40 40"><use href="#kid-star"/></svg>
+  <svg class="bg-doodle" data-theme="stars" style="top:50%; left:6%;" viewBox="0 0 40 40"><use href="#kid-star"/></svg>
+  <svg class="bg-doodle big" data-theme="stars" style="top:70%; right:4%;" viewBox="0 0 44 44"><use href="#kid-constellation"/></svg>
+  <svg class="bg-doodle" data-theme="stars" style="top:90%; left:8%;" viewBox="0 0 40 40"><use href="#kid-star"/></svg>
+
+  <svg class="bg-doodle big" data-theme="cards" style="top:10%; right:5%;" viewBox="0 0 40 42"><use href="#kid-card"/></svg>
+  <svg class="bg-doodle" data-theme="cards" style="top:35%; left:5%;" viewBox="0 0 40 42"><use href="#kid-card"/></svg>
+  <svg class="bg-doodle" data-theme="cards" style="top:58%; right:6%;" viewBox="0 0 40 40"><use href="#kid-star"/></svg>
+  <svg class="bg-doodle big" data-theme="cards" style="top:80%; left:6%;" viewBox="0 0 40 42"><use href="#kid-card"/></svg>
+
+  <svg class="bg-doodle big" data-theme="glow" style="top:10%; right:4%;" viewBox="0 0 40 44"><use href="#kid-paintdrip"/></svg>
+  <svg class="bg-doodle" data-theme="glow" style="top:38%; left:6%;" viewBox="0 0 40 40"><use href="#kid-star"/></svg>
+  <svg class="bg-doodle" data-theme="glow" style="top:65%; right:7%;" viewBox="0 0 40 44"><use href="#kid-paintdrip"/></svg>
+  <svg class="bg-doodle" data-theme="glow" style="top:88%; left:5%;" viewBox="0 0 40 50"><use href="#kid-rocket-outline"/></svg>
+
+  <svg class="bg-doodle big" data-theme="circuit" style="top:8%; left:4%;" viewBox="0 0 40 34"><use href="#kid-battery"/></svg>
+  <svg class="bg-doodle" data-theme="circuit" style="top:32%; right:5%;" viewBox="0 0 46 34"><use href="#kid-wire"/></svg>
+  <svg class="bg-doodle" data-theme="circuit" style="top:56%; left:6%;" viewBox="0 0 38 48"><use href="#kid-led"/></svg>
+  <svg class="bg-doodle big" data-theme="circuit" style="top:80%; right:4%;" viewBox="0 0 46 34"><use href="#kid-wire"/></svg>
+
+  <svg class="bg-doodle big" data-theme="ledinsert" style="top:8%; right:5%;" viewBox="0 0 38 48"><use href="#kid-led"/></svg>
+  <svg class="bg-doodle" data-theme="ledinsert" style="top:34%; left:5%;" viewBox="0 0 40 50"><use href="#kid-rocket-outline"/></svg>
+  <svg class="bg-doodle" data-theme="ledinsert" style="top:58%; right:6%;" viewBox="0 0 46 34"><use href="#kid-wire"/></svg>
+  <svg class="bg-doodle big" data-theme="ledinsert" style="top:82%; left:7%;" viewBox="0 0 38 48"><use href="#kid-led"/></svg>
+
+  <svg class="bg-doodle big" data-theme="basewiring" style="top:10%; left:4%;" viewBox="0 0 38 38"><use href="#kid-tracewire"/></svg>
+  <svg class="bg-doodle" data-theme="basewiring" style="top:35%; right:5%;" viewBox="0 0 40 36"><use href="#kid-magnet"/></svg>
+  <svg class="bg-doodle" data-theme="basewiring" style="top:58%; left:6%;" viewBox="0 0 38 48"><use href="#kid-led"/></svg>
+  <svg class="bg-doodle big" data-theme="basewiring" style="top:82%; right:4%;" viewBox="0 0 38 38"><use href="#kid-tracewire"/></svg>
+
+  <svg class="bg-doodle big" data-theme="magnet" style="top:12%; left:5%;" viewBox="0 0 40 36"><use href="#kid-magnet"/></svg>
+  <svg class="bg-doodle" data-theme="magnet" style="top:42%; right:6%;" viewBox="0 0 40 36"><use href="#kid-magnet"/></svg>
+  <svg class="bg-doodle big" data-theme="magnet" style="top:68%; left:7%;" viewBox="0 0 40 36"><use href="#kid-magnet"/></svg>
+  <svg class="bg-doodle" data-theme="magnet" style="top:90%; right:5%;" viewBox="0 0 40 36"><use href="#kid-magnet"/></svg>
+
+  <svg class="bg-doodle big" data-theme="planets" style="top:8%; right:4%;" viewBox="0 0 60 60"><use href="#kid-planet"/></svg>
+  <svg class="bg-doodle" data-theme="planets" style="top:34%; left:5%;" viewBox="0 0 40 40"><use href="#kid-needle"/></svg>
+  <svg class="bg-doodle" data-theme="planets" style="top:58%; right:6%;" viewBox="0 0 60 60"><use href="#kid-planet"/></svg>
+  <svg class="bg-doodle big" data-theme="planets" style="top:82%; left:6%;" viewBox="0 0 40 40"><use href="#kid-needle"/></svg>
+
+  <svg class="bg-doodle big" data-theme="scoreboard" style="top:12%; left:5%;" viewBox="0 0 38 44"><use href="#kid-pennant"/></svg>
+  <svg class="bg-doodle" data-theme="scoreboard" style="top:40%; right:6%;" viewBox="0 0 40 50"><use href="#kid-rocket-outline"/></svg>
+  <svg class="bg-doodle big" data-theme="scoreboard" style="top:68%; left:7%;" viewBox="0 0 38 44"><use href="#kid-pennant"/></svg>
+
+  <svg class="bg-doodle big" data-theme="play" style="top:8%; left:5%;" viewBox="0 0 60 60"><use href="#kid-planet"/></svg>
+  <svg class="bg-doodle" data-theme="play" style="top:30%; right:5%;" viewBox="0 0 40 50"><use href="#kid-rocket-outline"/></svg>
+  <svg class="bg-doodle" data-theme="play" style="top:54%; left:6%;" viewBox="0 0 40 42"><use href="#kid-card"/></svg>
+  <svg class="bg-doodle big" data-theme="play" style="top:76%; right:6%;" viewBox="0 0 40 42"><use href="#kid-box"/></svg>
+  <svg class="bg-doodle" data-theme="play" style="top:94%; left:8%;" viewBox="0 0 40 40"><use href="#kid-star"/></svg>
+
+  <svg class="bg-doodle big" data-theme="orion" style="top:10%; left:4%;" viewBox="0 0 44 44"><use href="#kid-constellation"/></svg>
+  <svg class="bg-doodle" data-theme="orion" style="top:34%; right:5%;" viewBox="0 0 40 40"><use href="#kid-star"/></svg>
+  <svg class="bg-doodle" data-theme="orion" style="top:58%; left:6%;" viewBox="0 0 40 40"><use href="#kid-star"/></svg>
+  <svg class="bg-doodle big" data-theme="orion" style="top:80%; right:5%;" viewBox="0 0 44 44"><use href="#kid-constellation"/></svg>
+</div>
+
+<!-- ================= THE DREAM TOY ================= -->
+<section class="section reveal" data-theme="dream">
+  <div class="card">
+    <span class="eyebrow">the brief</span>
+    <h2>A dream toy</h2>
+    <p>Before any cutting or gluing, we talked through the dream toy brief. The idea was clear: a small rocket that could <strong>glow in the dark</strong>, paired with a cooperative board game.</p>
+    <p>We came away with a clear goal: build a rocket for a young space enthusiast, with room to grow into more than one way to play.</p>
+  </div>
+</section>
+
+<!-- ================= THE IDEA ================= -->
+<section class="section reveal" data-theme="idea">
+  <div class="card">
+    <span class="eyebrow">the idea</span>
+    <h2>Teaming up</h2>
+    <p>We talked through our ideas with collaborators, who pointed out that a strict rule set could be limiting &mdash; it might box in a child's imagination instead of opening it up.</p>
+    <p>So we decided to keep it simple: offer a few example rules, but leave room for a child to invent their own way to play.</p>
+  </div>
+</section>
+
+<!-- ================= INTERACTIVE #1: THE STARS ================= -->
+<section class="section reveal interactive-section" data-theme="stars">
+  <div class="card">
+    <span class="eyebrow">the stars</span>
+    <h2>Where the idea came from</h2>
+    <p>While messing around in the lab, I was fiddling with a box of loose buttons when a handful spilled onto a fabric. Scattered like that, I think they looked like stars in the night sky.</p>
+    <div class="photo-group single">
+      <figure class="photo">
+        <img src="images/buttons-like-stars.jpeg" alt="buttons scattered on dark polka-dot fabric, looking like scattered stars">
+        <figcaption>buttons scattered on fabric &mdash; the moment the idea clicked</figcaption>
+      </figure>
+    </div>
+    <p>That was it &mdash; a game where you toss "stars" onto the board and try to find constellations among them.</p>
+  </div>
+
+  <div class="decision-card" data-decision="stars">
+    <svg class="doodle-inline" viewBox="0 0 40 40" aria-hidden="true"><use href="#kid-star"/></svg>
+    <p class="prompt">I liked the look of buttons for stars, but they kept bouncing all over the place when I dropped them onto the board&hellip; what should I try?</p>
+    <div class="choices">
+      <button class="choice-btn" data-choice="magnets">Add magnets so they click onto the board</button>
+      <button class="choice-btn" data-choice="material">Find a different material</button>
+    </div>
+    <div class="outcome" data-outcome="magnets" hidden>
+      <p><span class="tag tag-tried">↺ tried this first</span> I glued small magnets onto the backs of the buttons. They stuck to the board nicely &mdash; but then I realized the buttons all stick to <em>each other</em> when stored together in a small box. Not quite it.</p>
+      <div class="photo-group single">
+        <figure class="photo">
+          <img src="images/button-with-magnets.jpeg" alt="buttons with small magnets glued to the back">
+          <figcaption>buttons with magnets glued on &mdash; they stuck together in storage</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="outcome" data-outcome="material" hidden>
+      <p><span class="tag tag-real">✓ this is what actually worked</span> I tried laser-cutting the stars out of acrylic instead of using buttons. They're lighter, don't roll away, and don't clump together in storage &mdash; exactly what the game needed.</p>
+      <div class="photo-group single">
+        <figure class="photo">
+          <img src="images/laser cut stars.jpeg" alt="small laser-cut acrylic stars being cut">
+          <figcaption>laser-cutting the stars &mdash; the fix that actually worked</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MAKING THE GAME CARDS ================= -->
+<section class="section reveal" data-theme="cards">
+  <div class="card">
+    <span class="eyebrow">the cards</span>
+    <h2>Making the game cards</h2>
+    <p>With the stars sorted, we designed a full celestial deck in Figma &mdash; 54 constellations plus quite a few blank cards, each with a point value on the upper left corner, based on how many stars it takes to trace.</p>
+    <div class="photo-group single">
+      <figure class="photo">
+      </figure>
+    </div>
+    <p>Each card shows the constellation's shape on the front, with its name and a short story on the back. We also designed a second, smaller deck of action cards &mdash; things like <em>Stellar Wind</em>, <em>Black Hole</em>, and <em>Warp Jump</em> &mdash; that let players trade stars, swap cards, or shake up the board mid-game.</p>
+    <div class="photo-group">
+      <figure class="photo">
+        <img src="images/front and back constellation card.jpeg" alt="printed constellation cards fanned out, showing point values and star counts">
+        <figcaption>printed constellation cards, with point values and star counts</figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="images/design action cards.jpeg" alt="printed sheet of action cards like Twin Stars, North Star, Black Hole, Stellar Wind">
+        <figcaption>the action card sheet, fresh off the laminator</figcaption>
+      </figure>
+    </div>
+    <p>Once the cards existed, we tested whether they actually worked with the stars on the board; tracing a constellation card against the scattered pieces to see if the shape held up.</p>
+    <div class="photo-group single">
+      <figure class="photo">
+        <img src="images/constellation-demo.jpeg" alt="hand holding a constellation card next to scattered stars on the board">
+        <figcaption>testing a constellation card against the stars on the board</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= THE ROCKET GLOW ================= -->
+<section class="section reveal" data-theme="glow">
+  <div class="card">
+    <span class="eyebrow">the rocket</span>
+    <h2>Making it glow</h2>
+    <p>We wanted the rocket to glow in the dark. I tested a few painted prototypes, comparing paint markers, acrylic, against layers of actual glow-in-the-dark paint.</p>
+    <div class="photo-group single">
+      <figure class="photo">
+        <img src="images/testing with paints.jpeg" alt="three painted rocket prototypes with different paint combinations">
+        <figcaption>three test blocks, comparing paint marker vs. glow paint combinations</figcaption>
+      </figure>
+    </div>
+    <p>A collaborator pointed out that glow paint needs to <em>absorb</em> light first, and usually needs several layers before it actually glows as expected. Lesson learned! Under UV light, it finally showed...a little...</p>
+    <div class="photo-group single">
+      <figure class="photo">
+        <img src="images/testing glow in the dark.jpeg" alt="felt planets and a rocket test block glowing under UV blacklight">
+        <figcaption>testing the glow under UV light</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INTERACTIVE #2: THE LED CIRCUIT ================= -->
+<section class="section reveal interactive-section" data-theme="circuit">
+  <div class="card">
+    <span class="eyebrow">the rocket</span>
+    <h2>Lighting it up for real</h2>
+    <p>Glow paint was nice, but what if the rocket actually lit up when it landed on the metal board? We planned to wire an LED into the rocket, connected through magnets touching the board. But soon we discovered it is not feasible.</p>
+    <p>After a quick Electrics 101 lesson with a collaborator: electrons need a complete, defined path to flow along. The metal board has no positive or negative terminals &mdash; so there was no path for the electrons to follow.</p>
+  </div>
+
+  <div class="decision-card" data-decision="circuit">
+    <svg class="doodle-inline" viewBox="0 0 40 40" aria-hidden="true">
+      <path d="M12 30 L12 14 Q12 6 20 6 Q28 6 28 14 L28 30" fill="none" stroke="#2b2b2b" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="20" cy="18" r="6" fill="#fff3bf" stroke="#2b2b2b" stroke-width="2"/>
+    </svg>
+    <p class="prompt">The metal board has no positive or negative terminals, so the electrons have nowhere to go&hellip; what's missing?</p>
+    <div class="choices">
+      <button class="choice-btn" data-choice="battery">Add a battery inside the rocket</button>
+      <button class="choice-btn" data-choice="circuitpath">Build a complete circuit path</button>
+    </div>
+    <div class="outcome" data-outcome="battery" hidden>
+      <p><span class="tag tag-tried">↺ not the route we took</span> A battery would power the LED, but it doesn't solve the real problem &mdash; the board itself still has no defined positive/negative path for current to travel through.</p>
+    </div>
+    <div class="outcome" data-outcome="circuitpath" hidden>
+      <p><span class="tag tag-real">✓ this is what actually worked</span> I made a parallel circuit with dedicated nodes for the rocket to complete, using copper tape as the conductive path on the fabric &mdash; one strip per leg of the LED, connected back to a battery pack.</p>
+      <div class="photo-group">
+        <figure class="photo">
+          <img src="images/demo rocket with conductive tape.jpeg" alt="the LED lit up green on the copper tape circuit, held over felt">
+          <figcaption>it works &mdash; the LED lights up green</figcaption>
+        </figure>
+        <figure class="photo">
+          <img src="images/demo rocket with LED.jpeg" alt="copper tape circuit prototype on paper with battery pack and LED">
+          <figcaption>the copper-tape circuit prototype, on paper</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INTERACTIVE #3: GETTING THE LED INSIDE ================= -->
+<section class="section reveal interactive-section" data-theme="ledinsert">
+  <div class="card">
+    <span class="eyebrow">the rocket</span>
+    <h2>Getting the LED inside</h2>
+    <p>Easier said than done. The rocket body is 3D printed &mdash; so how do you get a fragile LED and its wires inside a closed shape?</p>
+  </div>
+
+  <div class="decision-card" data-decision="ledinsert">
+    <svg class="doodle-inline" viewBox="0 0 40 40" aria-hidden="true">
+      <path d="M20 4 C 26 14, 28 26, 24 34 L16 34 C 12 26, 14 14, 20 4 Z" fill="#fff" stroke="#2b2b2b" stroke-width="2.2" stroke-linejoin="round"/>
+      <circle cx="20" cy="17" r="4" fill="#bfe3ff" stroke="#2b2b2b" stroke-width="1.8"/>
+    </svg>
+    <p class="prompt">How do I get the LED into the rocket body?</p>
+    <div class="choices">
+      <button class="choice-btn" data-choice="window">Slide it in through the window</button>
+      <button class="choice-btn" data-choice="split">Split the rocket in half and glue it</button>
+      <button class="choice-btn" data-choice="pause">Pause the print midway and insert it</button>
+    </div>
+    <div class="outcome" data-outcome="window" hidden>
+      <p><span class="tag tag-tried">↺ tried this first</span> In the first prototype, I tried inserting the LED and wire through the window, then pulling the wire out from the base. The window turned out too small for this plan.</p>
+      <div class="photo-group single">
+        <figure class="photo">
+          <img src="images/LED does not fit.jpeg" alt="printed rocket body with a red LED that doesn't fit through the small window">
+          <figcaption>attempt 1 &mdash; the window was too small</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="outcome" data-outcome="split" hidden>
+      <p><span class="tag tag-tried">↺ tried this second</span> Next, I split the bottom part, inserted the LED from the base upward, then glued the two halves together. It worked &mdash; but I didn't like the look of the visible seam.</p>
+      <div class="photo-group single">
+        <figure class="photo">
+          <img src="images/print rocket in 2 section.jpeg" alt="rocket body printed in two separate sections to be glued together">
+          <figcaption>attempt 2 &mdash; printed in two sections, visible seam</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="outcome" data-outcome="pause" hidden>
+      <p><span class="tag tag-real">✓ this is what actually worked</span> In the third attempt, we paused the 3D print <em>midway</em>, inserted the LED and wire by hand, then let the printer continue on top of it &mdash; so the rocket comes out as one seamless piece.</p>
+      <div class="photo-group">
+        <figure class="photo">
+          <img src="images/printing with tree structure.jpeg" alt="slicer software showing tree supports and a pause mark in the print">
+          <figcaption>setting a pause point in the slicer, with tree supports</figcaption>
+        </figure>
+        <figure class="photo">
+          <img src="images/pause midway insert led.jpeg" alt="3D printer bed with the rocket print paused and the LED inserted mid-print">
+          <figcaption>the print paused, LED inserted, ready to resume</figcaption>
+        </figure>
+      </div>
+      <p>A collaborator reminded us to add insulation between the LED legs, since they sat very close together with a real risk of short-circuiting. We also learned to use tree supports and a custom G-code pause so Prusa would stop automatically right when we needed to drop the LED in.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WIRING THE BASE BOARD ================= -->
+<section class="section reveal" data-theme="basewiring">
+  <div class="card">
+    <span class="eyebrow">the base board</span>
+    <h2>Wiring the board underneath</h2>
+    <p>The rocket's LED is only half the circuit. The other half lives in the base: three laser-cut boards, one coin battery, a switch, two magnets, and a lot of conductive tape. The circuit only closes once the boards are stacked together.</p>
+    <div class="photo-group">
+      <figure class="photo">
+        <img src="images/making circuits for base.jpeg" alt="conductive tape circuit traces designed onto wooden board panels">
+        <figcaption>designing the conductive tape circuit on the base panels</figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="images/assemble circuit in base.jpeg" alt="multimeter testing continuity of the magnet circuit as the two boards come together">
+        <figcaption>testing continuity with a multimeter as the two boards snap together</figcaption>
+      </figure>
+    </div>
+    <p>Here's how the layers fit. <strong>Drag</strong> the model to look around, peek underneath to see the tape on the back of each board, then snap the layers together.</p>
+    <div class="circuit-viewer" id="circuit-viewer">
+      <div class="cv-stage" tabindex="0" role="group" aria-label="3D model of the three base boards and their circuit parts. Drag or use the arrow keys to rotate.">
+        <div class="cv-scene"></div>
+        <span class="cv-hint" aria-hidden="true">drag to rotate &middot; arrow keys work too</span>
+      </div>
+      <div class="cv-controls">
+        <button type="button" class="choice-btn" id="cv-toggle" aria-pressed="false">Snap the boards together</button>
+        <button type="button" class="choice-btn" id="cv-switch" aria-pressed="true">Switch: on</button>
+        <button type="button" class="choice-btn" id="cv-peek">Peek underneath</button>
+        <button type="button" class="choice-btn" id="cv-reset">Reset view</button>
+      </div>
+      <p class="cv-status" aria-live="polite"></p>
+      <ul class="cv-legend">
+        <li><strong>Board 1 &middot; score board</strong>Front: the scoring track, two magnet holes, and the switch. Back: tape behind each magnet, plus a strip from the + magnet through the switch to where the battery's + side lands.</li>
+        <li><strong>Board 2 &middot; battery layer</strong>Front: the coin battery (+ side up), a pocket for the bumps on the back of the switch, and the &minus; tape poking up through a small hole. Back: tape from the battery's &minus; side over to that hole.</li>
+        <li><strong>Board 3 &middot; cover</strong>A blank board that closes everything in and holds the battery in place.</li>
+      </ul>
+    </div>
+    <p>On the rocket's side, we soldered a magnet onto each LED wire at the bottom of the rocket, so its two feet click onto the board's magnets. This is the same soldering step that weakened the magnets (more on that next).</p>
+    <div class="photo-group single">
+      <figure class="photo">
+        <img src="images/soldering magnets.jpeg" alt="soldering a magnet onto wires at the base of the rocket circuit rig">
+        <figcaption>soldering the magnets onto the base circuit</figcaption>
+      </figure>
+    </div>
+    <p>Once the tape paths tested well, we glued the boards together so the layers stay lined up and the circuit stays closed. The stacked boards became the lid of the box.</p>
+    <div class="photo-group single">
+      <figure class="photo">
+        <img src="images/Gluing the lid together.jpeg" alt="gluing the stacked circuit boards together to form the box lid">
+        <figcaption>gluing the layered circuit boards into the lid</figcaption>
+      </figure>
+    </div>
+    <p>And then it worked. The rocket landed on the board, the circuit closed, and the LED lit up.</p>
+    <div class="photo-group single">
+      <figure class="photo">
+        <img src="images/base circuit light rocket up.jpeg" alt="the rocket glowing blue while sitting on the laser-cut score board">
+        <figcaption>the payoff &mdash; the rocket lights up on the board</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INTERACTIVE #4: MAGNETS LOSE STRENGTH ================= -->
+<section class="section reveal interactive-section" data-theme="magnet">
+  <div class="card">
+    <span class="eyebrow">the rocket</span>
+    <h2>A magnet mystery</h2>
+    <p>Right after soldering the magnets onto the rocket's LED wires, they felt noticeably weaker than before.</p>
+  </div>
+
+  <div class="decision-card" data-decision="magnet">
+    <svg class="doodle-inline" viewBox="0 0 40 40" aria-hidden="true">
+      <path d="M10 10 L10 24 Q10 30 16 30 Q22 30 22 24 L22 10" fill="none" stroke="#2b2b2b" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M30 10 L30 24 Q30 30 24 30" fill="none" stroke="#2b2b2b" stroke-width="2.5" stroke-linecap="round" opacity="0"/>
+      <rect x="6" y="4" width="8" height="8" fill="#ff6b5e" stroke="#2b2b2b" stroke-width="2"/>
+      <rect x="18" y="4" width="8" height="8" fill="#bfe3ff" stroke="#2b2b2b" stroke-width="2"/>
+    </svg>
+    <p class="prompt">After soldering, the magnets felt weaker&hellip; what should I try?</p>
+    <div class="choices">
+      <button class="choice-btn" data-choice="rub">Rub them against stronger magnets</button>
+      <button class="choice-btn" data-choice="order">Order a fresh set of magnets</button>
+    </div>
+    <div class="outcome" data-outcome="rub" hidden>
+      <p><span class="tag tag-real">✓ this is what we actually did</span> Turns out magnets lose magnetism when exposed to high heat &mdash; exactly what soldering does. I rubbed the weakened magnets against larger, stronger ones to restore some of their pull. It worked&hellip; a little.</p>
+    </div>
+    <div class="outcome" data-outcome="order" hidden>
+      <p><span class="tag tag-tried">↺ not the route we took</span> New magnets would sidestep the problem; but the soldering issue is still there...</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= THE PLANETS ================= -->
+<section class="section reveal" data-theme="planets">
+  <div class="card">
+    <span class="eyebrow">the planets</span>
+    <h2>Building out the solar system</h2>
+    <p>We found cute planet patterns online, and we cut them out of felt and fabric, adding magnets inside so they can interact with the metal board.</p>
+    <div class="photo-group single">
+      <figure class="photo">
+      </figure>
+    </div>
+    <p>A bit of scrap felt glued within the planet layers made each planet feel soft, and little details gave each one its own character.</p>
+    <p>For the board itself, we found an old dark blue t-shirt and sewed it into a case &mdash; which meant relearning how to use a sewing machine, with a little help.</p>
+    <div class="photo-group single">
+      <figure class="photo">
+        <img src="images/sewn board case.jpg" alt="sewing a dark blue t-shirt fabric case on a sewing machine">
+        <figcaption>sewing the board case out of an old t-shirt</figcaption>
+      </figure>
+    </div>
+    <div class="photo-group single">
+      <figure class="photo">
+        <img src="images/complete planets.jpg" alt="finished felt solar system with sun, planets, and stars laid out on navy fabric">
+        <figcaption>the finished felt solar system</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BUILDING THE SCORE BOARD ================= -->
+<section class="section reveal" data-theme="scoreboard">
+  <div class="card">
+    <span class="eyebrow">the board</span>
+    <h2>Building the score track</h2>
+    <p>Alongside the space board, we laser-cut a separate scoring track &mdash; a winding path from start to 50 points, with little rocket icons marking the way. We embedded the battery circuit inside the scoring board so it lights the rocket up at the winning 50 block; it's also the lid for our storage box of all the game components.</p>
+    <div class="photo-group">
+      <figure class="photo">
+        <img src="images/laser cut score board.jpeg" alt="laser-cut wooden score board with a winding numbered track from 1 to 50">
+        <figcaption>the laser-cut scoring track, 1 to 50</figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="images/tokens for score board.jpeg" alt="small laser-cut wooden rocket tokens for the score board">
+        <figcaption>player tokens, engraved with little rockets</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW TO PLAY ================= -->
+<section class="section reveal" data-theme="play">
+  <div class="card">
+    <span class="eyebrow">putting it together</span>
+    <h2>Two ways to play</h2>
+    <ol class="playlist">
+      <li>The rocket can land on different planets and roam around the space board.</li>
+      <li>Clear all the planets, and the board becomes an open area for a child's own board game. We designed multiple rules for players and made a rule book that fits into the box.</li>
+    </ol>
+    <p>We sewed the rule book, binding the pages together and leaving blank pages at the back for a child to write their own rules.</p>
+    <div class="photo-group">
+      <figure class="photo">
+        <img src="images/Sewing the rulebook.jpeg" alt="hand-sewing the binding of the rule book">
+        <figcaption>sewing the rule book's binding</figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="images/Rule book made.jpeg" alt="the finished hand-bound rule book">
+        <figcaption>the finished rule book</figcaption>
+      </figure>
+    </div>
+    <div class="photo-group single">
+      <figure class="photo">
+        <img src="images/finding constellations.jpeg" alt="hand holding the Apus constellation card next to matching stars traced on the board">
+        <figcaption>tracing the Apus constellation against the stars on the board</figcaption>
+      </figure>
+    </div>
+    <div class="photo-group single">
+      <figure class="photo">
+        <img src="images/game in play.jpeg" alt="hand holding a fan of constellation and action cards next to the star-scattered board">
+        <figcaption>a round in progress &mdash; constellation cards and action cards in hand</figcaption>
+      </figure>
+    </div>
+    <p>Everything packs away into a laser-cut box with its own compartments.</p>
+    <div class="photo-group">
+      <figure class="photo">
+        <img src="images/complete box.jpg" alt="finished laser-cut storage box with compartments, next to the score board and painted rocket">
+        <figcaption>the finished storage box</figcaption>
+      </figure>
+    </div>
+    <p class="next-steps">Along the way, collaborator feedback helped shape the scoring and gave us confidence in the design. We wanted the game to have a high ceiling and wide walls, so a child can keep coming up with their own ways to play.</p>
+  </div>
+</section>
+
+<!-- ================= SIDE STORY: ORION ================= -->
+<section class="section reveal" data-theme="orion">
+  <div class="card orion-card">
+    <span class="eyebrow">a side story</span>
+    <h2>Then we saw Orion</h2>
+    <p>One evening, we looked up and spotted Orion: the three stars of his belt in a neat row, with his shoulders and feet around them.</p>
+    <p>After weeks of tracing constellations on acrylic stars and cards, finding one in the real sky felt kind of amazing. It's the same thing we hope a child does with the game and actual night skies: look at a scatter of stars and find a shape in it.</p>
+    <div class="photo-group">
+      <figure class="photo">
+        <img src="images/Our sight of Orion.jpg" alt="night sky showing the Orion constellation">
+        <figcaption>our view of Orion</figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="images/Orion constellation.png" alt="diagram of the Orion constellation with its stars connected">
+        <figcaption>Orion, traced</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CLOSING ================= -->
+<section class="section reveal closing">
+  <svg class="doodle doodle-planet" viewBox="0 0 60 60" aria-hidden="true"><use href="#kid-planet"/></svg>
+  <h2>Made with trial, error,<br>and a little bit of glow</h2>
+  <p class="credits">With thanks to our collaborators and mentors.</p>
+</section>
+
+<script src="circuit-viewer.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
